@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>人物資料庫｜洪荒智庫</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Noto Sans TC",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          #26345f 0%,
+          #11182f 32%,
+          #080c18 75%
+        );
+
+      color: #f4f5ff;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+
+    /* ===== 頂部 ===== */
+
+    header {
+      position: relative;
+
+      padding: 55px 20px 45px;
+
+      text-align: center;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(118, 137, 205, 0.20),
+          transparent 50%
+        );
+
+      border-bottom:
+        1px solid rgba(100, 115, 160, 0.15);
+    }
+
+
+    header::before {
+      content: "";
+
+      position: absolute;
+
+      width: 2px;
+      height: 2px;
+
+      background: #ffffff;
+
+      box-shadow:
+        10vw 10vh #ffffff,
+        25vw 20vh #9da9d8,
+        43vw 8vh #ffffff,
+        65vw 15vh #ffffff,
+        82vw 10vh #9da9d8,
+        92vw 35vh #ffffff,
+        15vw 40vh #9da9d8,
+        78vw 45vh #ffffff;
+
+      opacity: 0.5;
+    }
+
+
+    .back-button {
+      position: relative;
+      z-index: 1;
+
+      display: inline-block;
+
+      margin-bottom: 25px;
+
+      padding: 7px 16px;
+
+      border:
+        1px solid #46547d;
+
+      border-radius: 999px;
+
+      color: #aeb9db;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      background:
+        rgba(36, 47, 83, 0.45);
+
+      transition: 0.25s;
+    }
+
+
+    .back-button:hover {
+      background:
+        rgba(79, 96, 150, 0.45);
+
+      color: #ffffff;
+
+      transform: translateY(-2px);
+    }
+
+
+    .page-icon {
+      position: relative;
+      z-index: 1;
+
+      font-size: 48px;
+
+      margin-bottom: 10px;
+
+      filter:
+        drop-shadow(
+          0 0 18px
+          rgba(150, 170, 255, 0.4)
+        );
+    }
+
+
+    h1 {
+      position: relative;
+      z-index: 1;
+
+      font-size:
+        clamp(30px, 8vw, 48px);
+
+      letter-spacing: 5px;
+
+      margin-bottom: 10px;
+    }
+
+
+    .subtitle {
+      position: relative;
+      z-index: 1;
+
+      color: #9fa9c7;
+
+      font-size: 14px;
+    }
+
+
+    /* ===== 主內容 ===== */
+
+    main {
+      max-width: 1000px;
+
+      margin: auto;
+
+      padding:
+        35px 18px 70px;
+    }
+
+
+    /* ===== 搜尋 ===== */
+
+    .search-box {
+      margin-bottom: 25px;
+    }
+
+
+    .search-box input {
+      width: 100%;
+
+      padding: 14px 18px;
+
+      border:
+        1px solid #303b62;
+
+      border-radius: 14px;
+
+      outline: none;
+
+      background:
+        rgba(17, 23, 43, 0.9);
+
+      color: #ffffff;
+
+      font-size: 14px;
+
+      transition: 0.25s;
+    }
+
+
+    .search-box input::placeholder {
+      color: #687391;
+    }
+
+
+    .search-box input:focus {
+      border-color: #7182bd;
+
+      box-shadow:
+        0 0 18px
+        rgba(113, 130, 189, 0.12);
+    }
+
+
+    /* ===== 分類 ===== */
+
+    .filters {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-bottom: 30px;
+    }
+
+
+    .filter {
+      padding:
+        6px 13px;
+
+      border:
+        1px solid #303b62;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255, 255, 255, 0.035);
+
+      color: #8e99bb;
+
+      font-size: 12px;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+
+    .filter:hover {
+      border-color: #7182bd;
+
+      color: #ffffff;
+    }
+
+
+    .filter.active {
+      background:
+        rgba(94, 111, 170, 0.35);
+
+      border-color: #7182bd;
+
+      color: #ffffff;
+    }
+
+
+    /* ===== 人物數量 ===== */
+
+    .database-info {
+      color: #687391;
+
+      font-size: 12px;
+
+      margin-bottom: 15px;
+    }
+
+
+    /* ===== 人物卡片 ===== */
+
+    .people-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 15px;
+    }
+
+
+    .person-card {
+      padding: 22px 18px;
+
+      border:
+        1px solid #303b62;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(30, 40, 72, 0.95),
+          rgba(17, 23, 43, 0.95)
+        );
+
+      transition:
+        transform 0.25s,
+        border-color 0.25s,
+        background 0.25s;
+    }
+
+
+    .person-card:hover {
+      transform:
+        translateY(-4px);
+
+      border-color:
+        #7182bd;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(43, 55, 96, 0.95),
+          rgba(20, 27, 50, 0.95)
+        );
+    }
+
+
+    .person-icon {
+      font-size: 36px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .person-card h2 {
+      font-size: 20px;
+
+      margin-bottom: 3px;
+    }
+
+
+    .person-title {
+      color: #8994b8;
+
+      font-size: 12px;
+
+      margin-bottom: 12px;
+    }
+
+
+    .tag {
+      display: inline-block;
+
+      padding:
+        3px 8px;
+
+      margin-right: 5px;
+      margin-bottom: 7px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(118, 136, 195, 0.12);
+
+      border:
+        1px solid rgba(118, 136, 195, 0.25);
+
+      color: #aeb9db;
+
+      font-size: 10px;
+    }
+
+
+    .person-description {
+      margin-top: 8px;
+
+      color: #9fa9c7;
+
+      font-size: 13px;
+    }
+
+
+    .person-links {
+      margin-top: 15px;
+
+      padding-top: 12px;
+
+      border-top:
+        1px solid
+        rgba(100, 115, 160, 0.12);
+
+      color: #687391;
+
+      font-size: 11px;
+    }
+
+
+    /* ===== 無搜尋結果 ===== */
+
+    .no-result {
+      display: none;
+
+      padding: 40px 20px;
+
+      text-align: center;
+
+      color: #687391;
+
+      border:
+        1px solid #303b62;
+
+      border-radius: 18px;
+
+      background:
+        rgba(17, 23, 43, 0.65);
+    }
+
+
+    /* ===== Footer ===== */
+
+    footer {
+      padding:
+        35px 20px;
+
+      text-align: center;
+
+      color: #59637f;
+
+      font-size: 12px;
+
+      border-top:
+        1px solid
+        rgba(100, 115, 160, 0.12);
+    }
+
+
+    /* ===== 手機版 ===== */
+
+    @media (max-width: 500px) {
+
+      header {
+        padding:
+          45px 18px 35px;
+      }
+
+
+      .page-icon {
+        font-size: 42px;
+      }
+
+
+      h1 {
+        font-size: 32px;
+
+        letter-spacing: 4px;
+      }
+
+
+      .people-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- ===== 頂部 ===== -->
+
+  <header>
+
+    <a href="index.html" class="back-button">
+      ← 返回洪荒智庫
+    </a>
+
+    <div class="page-icon">
+      👤
+    </div>
+
+    <h1>
+      人物資料庫
+    </h1>
+
+    <p class="subtitle">
+      洪荒世界中的神祇、人物與重要存在
+    </p>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- ===== 搜尋 ===== -->
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔎 搜尋人物名稱，例如：盤古"
+      >
+
+    </div>
+
+
+    <!-- ===== 分類 ===== -->
+
+    <div class="filters">
+
+      <button
+        class="filter active"
+        data-filter="all">
+        全部
+      </button>
+
+      <button
+        class="filter"
+        data-filter="混沌神魔">
+        混沌神魔
+      </button>
+
+      <button
+        class="filter"
+        data-filter="先天神聖">
+        先天神聖
+      </button>
+
+      <button
+        class="filter"
+        data-filter="妖族">
+        妖族
+      </button>
+
+      <button
+        class="filter"
+        data-filter="巫族">
+        巫族
+      </button>
+
+      <button
+        class="filter"
+        data-filter="人族">
+        人族
+      </button>
+
+    </div>
+
+
+    <div class="database-info" id="databaseInfo">
+      目前資料：8 位人物
+    </div>
+
+
+    <!-- ===== 人物資料 ===== -->
+
+    <div class="people-grid" id="peopleGrid">
+
+
+      <!-- 盤古 -->
+
+      <article
+        class="person-card"
+        data-category="混沌神魔"
+        data-name="盤古">
+
+        <div class="person-icon">
+          🌌
+        </div>
+
+        <h2>
+          盤古
+        </h2>
+
+        <div class="person-title">
+          開天者
+        </div>
+
+        <span class="tag">
+          🟣 洪荒流設定
+        </span>
+
+        <span class="tag">
+          🔵 神話
+        </span>
+
+        <p class="person-description">
+          中國神話中的開天神話人物。
+          在許多洪荒流世界觀中，盤古被設定為洪荒世界的開闢者。
+        </p>
+
+        <div class="person-links">
+          相關：開天　力之法則　洪荒世界
+        </div>
+
+      </article>
+
+
+      <!-- 鴻鈞 -->
+
+      <article
+        class="person-card"
+        data-category="先天神聖"
+        data-name="鴻鈞">
+
+        <div class="person-icon">
+          🧙
+        </div>
+
+        <h2>
+          鴻鈞
+        </h2>
+
+        <div class="person-title">
+          道祖
+        </div>
+
+        <span class="tag">
+          🟣 洪荒流設定
+        </span>
+
+        <p class="person-description">
+          洪荒流作品中常見的重要角色，
+          通常被設定為紫霄宮講道者與道門祖師。
+        </p>
+
+        <div class="person-links">
+          相關：紫霄宮　三千大道　羅睺
+        </div>
+
+      </article>
+
+
+      <!-- 羅睺 -->
+
+      <article
+        class="person-card"
+        data-category="混沌神魔"
+        data-name="羅睺">
+
+        <div class="person-icon">
+          🔥
+        </div>
+
+        <h2>
+          羅睺
+        </h2>
+
+        <div class="person-title">
+          魔祖
+        </div>
+
+        <span class="tag">
+          🟣 洪荒流設定
+        </span>
+
+        <p class="person-description">
+          洪荒流中常見的魔道代表人物，
+          經常與鴻鈞共同出現在道魔之爭的世界觀中。
+        </p>
+
+        <div class="person-links">
+          相關：道魔之爭　魔道　鴻鈞
+        </div>
+
+      </article>
+
+
+      <!-- 老子 -->
+
+      <article
+        class="person-card"
+        data-category="先天神聖"
+        data-name="老子 太上老君 太清">
+
+        <div class="person-icon">
+          ☯️
+        </div>
+
+        <h2>
+          老子
+        </h2>
+
+        <div class="person-title">
+          太清道德天尊
+        </div>
+
+        <span class="tag">
+          🔵 神話
+        </span>
+
+        <span class="tag">
+          🟠 文學作品
+        </span>
+
+        <p class="person-description">
+          道教與中國思想文化中的重要人物。
+          洪荒流作品中通常作為三清之一。
+        </p>
+
+        <div class="person-links">
+          相關：三清　人教　太上老君
+        </div>
+
+      </article>
+
+
+      <!-- 元始天尊 -->
+
+      <article
+        class="person-card"
+        data-category="先天神聖"
+        data-name="元始天尊">
+
+        <div class="person-icon">
+          ✨
+        </div>
+
+        <h2>
+          元始天尊
+        </h2>
+
+        <div class="person-title">
+          玉清元始天尊
+        </div>
+
+        <span class="tag">
+          🔵 神話
+        </span>
+
+        <span class="tag">
+          🟣 洪荒流設定
+        </span>
+
+        <p class="person-description">
+          道教尊神之一。
+          在洪荒流世界觀中通常與老子、通天教主並列為三清。
+        </p>
+
+        <div class="person-links">
+          相關：三清　闡教　封神量劫
+        </div>
+
+      </article>
+
+
+      <!-- 通天教主 -->
+
+      <article
+        class="person-card"
+        data-category="先天神聖"
+        data-name="通天教主">
+
+        <div class="person-icon">
+          ⚔️
+        </div>
+
+        <h2>
+          通天教主
+        </h2>
+
+        <div class="person-title">
+          上清靈寶天尊
+        </div>
+
+        <span class="tag">
+          🔵 神話
+        </span>
+
+        <span class="tag">
+          🟣 洪荒流設定
+        </span>
+
+        <p class="person-description">
+          道教尊神之一。
+          洪荒流中常與截教、誅仙劍陣及封神量劫產生關聯。
+        </p>
+
+        <div class="person-links">
+          相關：三清　截教　封神量劫
+        </div>
+
+      </article>
+
+
+      <!-- 女媧 -->
+
+      <article
+        class="person-card"
+        data-category="先天神聖"
+        data-name="女媧">
+
+        <div class="person-icon">
+          🐍
+        </div>
+
+        <h2>
+          女媧
+        </h2>
+
+        <div class="person-title">
+          女媧娘娘
+        </div>
+
+        <span class="tag">
+          🔵 神話
+        </span>
+
+        <span class="tag">
+          🟣 洪荒流設定
+        </span>
+
+        <p class="person-description">
+          中國神話中的重要神祇。
+          傳統神話中與造人、補天等故事密切相關。
+        </p>
+
+        <div class="person-links">
+          相關：造人　補天　人族　封神
+        </div>
+
+      </article>
+
+
+      <!-- 帝俊 -->
+
+      <article
+        class="person-card"
+        data-category="妖族"
+        data-name="帝俊">
+
+        <div class="person-icon">
+          ☀️
+        </div>
+
+        <h2>
+          帝俊
+        </h2>
+
+        <div class="person-title">
+          妖族重要神祇
+        </div>
+
+        <span class="tag">
+          🔵 神話
+        </span>
+
+        <span class="tag">
+          🟣 洪荒流設定
+        </span>
+
+        <p class="person-description">
+          中國古代神話中的重要神祇。
+          洪荒流作品常將其設定為妖族天庭的重要領袖。
+        </p>
+
+        <div class="person-links">
+          相關：妖庭　東皇太一　巫妖量劫
+        </div>
+
+      </article>
+
+
+    </div>
+
+
+    <!-- ===== 無結果 ===== -->
+
+    <div
+      class="no-result"
+      id="noResult">
+
+      🔎 找不到符合條件的人物。
+
+    </div>
+
+
+  </main>
+
+
+  <footer>
+
+    洪荒智庫 · 人物資料庫
+
+  </footer>
+
+
+  <script>
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const filters =
+      document.querySelectorAll(".filter");
+
+    const cards =
+      document.querySelectorAll(".person-card");
+
+    const noResult =
+      document.getElementById("noResult");
+
+    const databaseInfo =
+      document.getElementById("databaseInfo");
+
+
+    let currentFilter = "all";
+
+
+    function updatePeople() {
+
+      const keyword =
+        searchInput.value
+          .trim()
+          .toLowerCase();
+
+      let visibleCount = 0;
+
+
+      cards.forEach(card => {
+
+        const name =
+          card.dataset.name
+            .toLowerCase();
+
+        const category =
+          card.dataset.category;
+
+
+        const matchKeyword =
+          name.includes(keyword);
+
+        const matchCategory =
+          currentFilter === "all" ||
+          category === currentFilter;
+
+
+        if (
+          matchKeyword &&
+          matchCategory
+        ) {
+
+          card.style.display = "";
+
+          visibleCount++;
+
+        } else {
+
+          card.style.display = "none";
+
+        }
+
+      });
+
+
+      noResult.style.display =
+        visibleCount === 0
+          ? "block"
+          : "none";
+
+
+      databaseInfo.textContent =
+        `目前顯示：${visibleCount} 位人物`;
+
+    }
+
+
+    searchInput.addEventListener(
+      "input",
+      updatePeople
+    );
+
+
+    filters.forEach(filter => {
+
+      filter.addEventListener(
+        "click",
+        () => {
+
+          filters.forEach(
+            item =>
+              item.classList.remove("active")
+          );
+
+
+          filter.classList.add("active");
+
+
+          currentFilter =
+            filter.dataset.filter;
+
+
+          updatePeople();
+
+        }
+      );
+
+    });
+
+
+  </script>
+
+
+</body>
+</html>
