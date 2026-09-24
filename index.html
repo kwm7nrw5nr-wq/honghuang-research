@@ -82,7 +82,7 @@
         82vw 48vh #ffffff,
         55vw 38vh #ffffff,
         7vw 27vh #9da9d8;
-      
+
       opacity: 0.55;
     }
 
@@ -257,7 +257,7 @@
       font-size: 13px;
     }
 
-    /* ===== 歷史時間線 ===== */
+    /* ===== 洪荒世界時間軸 ===== */
 
     .timeline {
       position: relative;
@@ -312,6 +312,51 @@
     .timeline-item p {
       color: #929dbb;
       font-size: 13px;
+    }
+
+    /* ===== 時間軸分類 ===== */
+
+    .timeline-label {
+      display: inline-block;
+
+      margin-bottom: 10px;
+      padding: 4px 10px;
+
+      border: 1px solid #46547d;
+      border-radius: 999px;
+
+      color: #aeb9db;
+      background: rgba(80, 96, 145, 0.16);
+
+      font-size: 11px;
+    }
+
+    /* ===== 資料性質圖例 ===== */
+
+    .legend {
+      display: flex;
+
+      flex-wrap: wrap;
+      justify-content: center;
+
+      gap: 8px;
+
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    .legend-item {
+      padding: 5px 10px;
+
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.045);
+
+      color: #9fa9c7;
+
+      font-size: 11px;
+
+      border: 1px solid rgba(100, 115, 160, 0.22);
     }
 
     /* ===== 研究核心 ===== */
@@ -408,6 +453,7 @@
       .research-flow {
         grid-template-columns: 1fr 1fr;
       }
+
     }
 
   </style>
@@ -424,11 +470,11 @@
     <h1>洪荒智庫</h1>
 
     <p class="subtitle">
-      洪荒流神祇關係網絡與權力結構研究
+      洪荒世界的神祇關係與權力結構研究
     </p>
 
     <p class="description">
-      探索混沌、洪荒、量劫與諸神之間的關聯
+      探索混沌、洪荒、量劫、諸神，以及持續演化的世界
     </p>
 
     <a href="#library" class="enter-button">
@@ -449,7 +495,7 @@
         <h2>📖 智庫分類</h2>
 
         <p>
-          探索洪荒世界中的人物、法則與歷史
+          從人物、法則到事件與關係網，建立洪荒世界資料庫
         </p>
 
       </div>
@@ -464,7 +510,7 @@
           <h3>人物</h3>
 
           <p>
-            神祇、混沌神魔與其他重要人物
+            神祇、混沌神魔、人族與其他重要人物
           </p>
 
         </a>
@@ -490,7 +536,7 @@
           <h3>勢力</h3>
 
           <p>
-            種族、陣營與洪荒主要勢力
+            種族、陣營、教派與洪荒主要勢力
           </p>
 
         </a>
@@ -503,7 +549,7 @@
           <h3>事件</h3>
 
           <p>
-            影響洪荒格局的重大事件
+            改變洪荒格局的重要事件與衝突
           </p>
 
         </a>
@@ -516,7 +562,7 @@
           <h3>量劫</h3>
 
           <p>
-            洪荒世界的重要歷史週期
+            洪荒世界中具有週期性的重大變局
           </p>
 
         </a>
@@ -539,31 +585,62 @@
     </section>
 
 
-    <!-- ===== 洪荒歷史 ===== -->
+    <!-- ===== 洪荒世界時間軸 ===== -->
 
     <section>
 
       <div class="section-title">
 
-        <h2>🌌 洪荒歷史脈絡</h2>
+        <h2>🌌 洪荒世界時間軸</h2>
 
         <p>
-          從混沌至封神，探索主要歷史階段
+          洪荒並非一段已經結束的歷史，而是一個持續演化的世界
         </p>
+
+      </div>
+
+
+      <div class="legend">
+
+        <div class="legend-item">
+          🟢 歷史記載
+        </div>
+
+        <div class="legend-item">
+          🔵 傳統神話／傳說
+        </div>
+
+        <div class="legend-item">
+          🟣 洪荒流設定
+        </div>
+
+        <div class="legend-item">
+          🟠 特定作品設定
+        </div>
+
+        <div class="legend-item">
+          🔮 自建／未來推演
+        </div>
 
       </div>
 
 
       <div class="timeline">
 
+        <!-- ===== 洪荒主線 ===== -->
+
         <div class="timeline-item">
 
           <div class="timeline-dot"></div>
 
+          <span class="timeline-label">
+            🌌 洪荒主線
+          </span>
+
           <h3>混沌時期</h3>
 
           <p>
-            混沌神魔與大道法則的世界
+            混沌神魔、大道與諸般法則存在於天地開闢以前。
           </p>
 
         </div>
@@ -576,7 +653,7 @@
           <h3>開天</h3>
 
           <p>
-            盤古開天，天地由混沌中分化
+            盤古開天，天地由混沌中分化，洪荒世界逐漸形成。
           </p>
 
         </div>
@@ -589,20 +666,7 @@
           <h3>凶獸量劫</h3>
 
           <p>
-            凶獸崛起，神逆之亂爆發
-          </p>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-          <div class="timeline-dot"></div>
-
-          <h3>道魔之爭</h3>
-
-          <p>
-            道祖與魔祖之間的重大衝突
+            凶獸勢力崛起，神逆之亂成為洪荒早期的重要變局。
           </p>
 
         </div>
@@ -615,7 +679,33 @@
           <h3>龍漢量劫</h3>
 
           <p>
-            龍、鳳、麒麟三族勢力交鋒
+            龍、鳳、麒麟等勢力相互爭鋒，洪荒格局再次重組。
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <h3>道魔之爭</h3>
+
+          <p>
+            道與魔的衝突影響洪荒後續格局，諸多強者登上世界舞台。
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <h3>仙庭與妖庭</h3>
+
+          <p>
+            東王公、西王母、帝俊與東皇太一等勢力逐漸形成新的秩序。
           </p>
 
         </div>
@@ -628,7 +718,20 @@
           <h3>巫妖量劫</h3>
 
           <p>
-            巫族與妖族主導洪荒格局
+            巫族與妖族成為洪荒主要勢力，最終衝突改變天地格局。
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <h3>聖人時代</h3>
+
+          <p>
+            諸聖立教、收徒，洪荒世界的力量與秩序進一步改變。
           </p>
 
         </div>
@@ -641,7 +744,97 @@
           <h3>封神量劫</h3>
 
           <p>
-            人族與諸教勢力共同參與的重大事件
+            人族、諸教與天庭等多方勢力共同參與的重大變局。
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <h3>西遊時代</h3>
+
+          <p>
+            取經故事與佛道勢力交織，洪荒世界進入新的階段。
+          </p>
+
+        </div>
+
+
+        <!-- ===== 人間支線 ===== -->
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <span class="timeline-label">
+            🏯 人間支線
+          </span>
+
+          <h3>三皇五帝</h3>
+
+          <p>
+            人族文明逐漸發展，神話傳說與人間歷史開始產生交會。
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <h3>夏商周至帝國時代</h3>
+
+          <p>
+            人族王朝更替，神話、傳說與歷史逐漸形成多層次敘事。
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <h3>後世傳說</h3>
+
+          <p>
+            各朝代的民間信仰、神怪故事與文學作品持續豐富洪荒世界觀。
+          </p>
+
+        </div>
+
+
+        <!-- ===== 未來 ===== -->
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <span class="timeline-label">
+            🔮 未來／待設定
+          </span>
+
+          <h3>未知量劫</h3>
+
+          <p>
+            未來是否存在新的量劫、勢力與世界秩序，目前保持未知。
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <h3>持續演化</h3>
+
+          <p>
+            洪荒世界沒有固定終點，未來事件可隨世界觀研究與資料建立持續擴展。
           </p>
 
         </div>
