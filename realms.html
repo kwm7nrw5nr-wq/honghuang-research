@@ -135,7 +135,7 @@ const search=document.getElementById('search');
 const realms=[...document.querySelectorAll('.realm')];
 search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();realms.forEach(card=>{card.hidden=!card.dataset.name.toLowerCase().includes(q)&&!card.innerText.toLowerCase().includes(q);});});
 
-const gameTabs=[...document.querySelectorAll('.game-tab')], gameViews=[...document.querySelectorAll('[data-view]')], explored=new Set();let quizScore=0,questionIndex=0;
+const gameTabs=[...document.querySelectorAll('.game-tab')], gameViews=[...document.querySelectorAll('[data-view]')], explored=new Set();
 const desc={
 '大羅金仙':['高階仙道的重要境界，也是本互動圖的分支起點。','可從這裡探索斬三尸／準聖路線與混元修行路線。'],
 '準聖／混元金仙':['智庫統合設定中，準聖對應混元金仙。','準聖路線可再查看一尸、二尸、三尸準聖等階段。'],
@@ -150,8 +150,35 @@ const desc={
 function refresh(){document.getElementById('gameProgressText').textContent='探索進度 '+explored.size+' / 10 · 挑戰答對 '+quizScore+' 題';document.getElementById('gameProgressBar').style.width=(explored.size/10*100)+'%';document.querySelectorAll('.realm-node').forEach(b=>b.classList.toggle('unlocked',explored.has(b.dataset.realm)));}
 gameTabs.forEach(tab=>tab.addEventListener('click',()=>{gameTabs.forEach(t=>{t.classList.toggle('active',t===tab);t.setAttribute('aria-selected',String(t===tab));});gameViews.forEach(v=>v.hidden=v.dataset.view!==tab.dataset.tab);}));
 document.querySelectorAll('.realm-node').forEach(b=>b.addEventListener('click',()=>{const n=b.dataset.realm;explored.add(n);document.querySelectorAll('.realm-node').forEach(x=>x.classList.toggle('selected',x===b));const d=desc[n]||['境界介紹正在整理中。','此項內容會依智庫統合設定逐步補全。'];document.getElementById('realmDetail').innerHTML='<h3>✨ '+n+'</h3><p>'+d[0]+'</p><p>'+d[1]+'</p><p class="muted">已記錄本次探索。</p>';refresh();}));
-const questions=[{q:'在智庫統合設定中，準聖對應哪個境界？',a:['太乙金仙','混元金仙','混元無極大羅金仙'],correct:1,why:'準聖＝混元金仙。'},{q:'在智庫統合設定中，聖人對應哪個境界？',a:['混元金仙','混元大羅金仙','大羅金仙'],correct:1,why:'聖人＝混元大羅金仙。'},{q:'天道、地道、人道在智庫中屬於什麼分類？',a:['固定境界階級','法寶等級','成道體系分類'],correct:2,why:'三道是成道體系分類，與境界階序分開記錄。'},{q:'大羅金仙之後的互動圖提供哪些路線？',a:['只有一條固定路線','斬三尸／準聖與混元修行','只分天仙與地仙'],correct:1,why:'本模組把兩種修行路線分開呈現。'}];
-function showQuestion(){const area=document.getElementById('quizArea');if(questionIndex>=questions.length){area.innerHTML='<h3>挑戰完成！</h3><p>本輪答對 '+quizScore+' 題。</p><button class="game-btn primary" id="restartQuiz">再挑戰一次</button>';document.getElementById('restartQuiz').addEventListener('click',()=>{questionIndex=0;quizScore=0;showQuestion();refresh();});return;}const q=questions[questionIndex];area.innerHTML='<p><strong>第 '+(questionIndex+1)+' 題／'+questions.length+' 題</strong></p><p>'+q.q+'</p>'+q.a.map((a,i)=>'<button class="quiz-option" data-answer="'+i+'">'+a+'</button>').join('')+'<div id="quizFeedback" class="muted" aria-live="polite"></div>';area.querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>{area.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);const ok=Number(b.dataset.answer)===q.correct;if(ok)quizScore++;document.getElementById('quizFeedback').textContent=(ok?'答對了！':'再記住這個對應。')+q.why;const next=document.createElement('button');next.className='game-btn primary';next.textContent=questionIndex===questions.length-1?'查看結果':'下一題';next.style.marginTop='10px';next.addEventListener('click',()=>{questionIndex++;showQuestion();refresh();});area.appendChild(next);refresh();}));}
+const questionBank=[
+{q:'準聖在智庫統合設定中對應哪個境界？',a:['太乙金仙','混元金仙','混元無極大羅金仙'],correct:1,why:'準聖＝混元金仙，是本智庫的統合對應。'},
+{q:'聖人在智庫統合設定中對應哪個境界？',a:['混元金仙','混元大羅金仙','大羅金仙'],correct:1,why:'聖人＝混元大羅金仙。'},
+{q:'天道、地道、人道屬於哪一類？',a:['固定境界階級','法寶等級','成道體系分類'],correct:2,why:'三道分類與境界階序分開記錄。'},
+{q:'本互動圖把大羅金仙作為什麼？',a:['兩條路線的比較起點','所有作品唯一最高境界','一種法寶'],correct:0,why:'它是智庫方便比較的分流節點。'},
+{q:'二尸準聖表示什麼？',a:['已斬去二尸的階段','必然已經成聖','混元路線最高階'],correct:0,why:'這個標籤描述斬尸進度。'},
+{q:'三尸盡斬是否必然自動成聖？',a:['所有作品都如此','本頁不預設如此，需依作品確認','只要有法寶就一定成聖'],correct:1,why:'三尸盡斬與成聖條件要分開查證。'},
+{q:'比較不同洪荒小說時，應如何處理境界差異？',a:['全部強行統一','只看留言','保留原作說法並註明差異'],correct:2,why:'統合框架不能取代原作證據。'},
+{q:'名稱相近是否代表戰力完全相同？',a:['是','否，名稱、對應與戰力應分開記錄','只要字數相同就相同'],correct:1,why:'境界名稱與實際戰力不是同一件事。'},
+{q:'混元太上無極大羅金仙在本智庫設定中如何定位？',a:['前段仙人境界','與大道平齊的最高階設定','與地仙同階'],correct:1,why:'這是專案採用的統合設定。'},
+{q:'盤古的「半步」定位應如何處理？',a:['另立正式境界','視為特殊定位，不另列獨立境界','等同地仙'],correct:1,why:'本專案不把半步另列成獨立境界。'},
+{q:'三道分類主要研究什麼？',a:['成道體系與力量關係','仙人前置階位','法寶稀有度'],correct:0,why:'三道描述成道體系，不是額外境界階級。'},
+{q:'為何不能說混元路線在所有作品都比聖人強？',a:['所有作品沒有境界','強弱與定義要按作品判斷','聖人永遠最強'],correct:1,why:'戰力排序需要作品中的明確描述或情節依據。'},
+{q:'地仙、天仙、玄仙等前段境界目前如何看待？',a:['所有作品順序必然相同','是候選序列，仍需跨作品核對','它們都是三道'],correct:1,why:'樣本未核實前不過度定論。'},
+{q:'一張完整境界資料卡應記錄什麼？',a:['只有名稱','定位、條件、能力描述與來源','只有角色外貌'],correct:1,why:'資料需要定義與可追溯來源。'},
+{q:'若某作品將準聖與混元金仙定義成不同階位，應怎麼做？',a:['刪掉原作差異','改寫原作','保留原作定義並註明差異'],correct:2,why:'原作設定應獨立保留。'},
+{q:'一尸、二尸、三尸準聖是什麼？',a:['斬尸進度細分','三種法寶','三位作者'],correct:0,why:'這些名稱用來呈現準聖階段的斬尸進度。'},
+{q:'混元大羅金仙之後，智庫候選序列列出哪個名稱？',a:['混元無極大羅金仙','天仙','地仙'],correct:0,why:'這是本頁的高階候選序列。'},
+{q:'「原文明載」代表什麼？',a:['有可核對的原作文字支持','編者猜測','網路傳言'],correct:0,why:'來源標籤應反映證據狀態。'},
+{q:'尚未找到足夠原文樣本時，應怎麼做？',a:['捏造引用','標記待核實並之後補證','宣稱已統計全部作品'],correct:1,why:'資料不足時要清楚標示待核實。'},
+{q:'境界分支圖主要用途是什麼？',a:['把所有作品定成同一版本','比較修行路線與階段關係','取代原作閱讀'],correct:1,why:'分支圖是研究導覽工具。'},
+{q:'聖人／混元大羅金仙在本頁代表什麼？',a:['智庫統合設定中的對應','所有作品必然完全同義','法寶名稱'],correct:0,why:'這是工作性對應，具體作品仍需核對。'},
+{q:'哪一項不是三道分類的研究重點？',a:['成道所屬體系','與天道的關係','境界名稱的字數'],correct:2,why:'三道研究關注體系與相互關係。'},
+{q:'同一境界在不同作品中可能有何差異？',a:['定義、能力與限制可能不同','必然完全相同','只會改變顏色'],correct:0,why:'洪荒流是多作品類型，設定需逐部比較。'},
+{q:'判斷角色戰力時，哪項證據更可靠？',a:['只靠境界名稱猜測','原作明確描述與情節證據','無來源排行榜'],correct:1,why:'戰力分析應優先使用可核對的原作依據。'}
+];
+let quizQuestions=[],quizScore=0,questionIndex=0;
+function shuffleQuestions(){quizQuestions=[...questionBank];for(let i=quizQuestions.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[quizQuestions[i],quizQuestions[j]]=[quizQuestions[j],quizQuestions[i]];}quizQuestions=quizQuestions.slice(0,10);}
+function showQuestion(){const area=document.getElementById('quizArea');if(questionIndex>=quizQuestions.length){area.innerHTML='<h3>挑戰完成！</h3><p>本輪答對 '+quizScore+' 題。</p><button class="game-btn primary" id="restartQuiz">再挑戰一次</button>';document.getElementById('restartQuiz').addEventListener('click',()=>{questionIndex=0;quizScore=0;shuffleQuestions();showQuestion();refresh();});return;}const q=quizQuestions[questionIndex];area.innerHTML='<p><strong>第 '+(questionIndex+1)+' 題／'+questions.length+' 題</strong></p><p>'+q.q+'</p>'+q.a.map((a,i)=>'<button class="quiz-option" data-answer="'+i+'">'+a+'</button>').join('')+'<div id="quizFeedback" class="muted" aria-live="polite"></div>';area.querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>{area.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);const ok=Number(b.dataset.answer)===q.correct;if(ok)quizScore++;document.getElementById('quizFeedback').textContent=(ok?'答對了！':'再記住這個對應。')+q.why;const next=document.createElement('button');next.className='game-btn primary';next.textContent=questionIndex===questions.length-1?'查看結果':'下一題';next.style.marginTop='10px';next.addEventListener('click',()=>{questionIndex++;showQuestion();refresh();});area.appendChild(next);refresh();}));}
 document.getElementById('startQuiz').addEventListener('click',()=>{questionIndex=0;quizScore=0;showQuestion();refresh();});refresh();
 
 </script>
