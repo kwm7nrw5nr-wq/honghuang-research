@@ -16,9 +16,9 @@ main{max-width:950px;margin:auto;padding:25px 16px 65px}
 h2{font-size:21px;margin-bottom:9px}h3{font-size:17px;margin-bottom:7px}.muted{color:#9fa9c7;font-size:13px}.note{border-left:3px solid #8798d0;padding:9px 12px;margin-top:12px;color:#b9c5e6;font-size:13px;background:rgba(118,136,195,.08);border-radius:0 9px 9px 0}
 .badges{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.badge{border:1px solid #46547d;border-radius:999px;padding:3px 9px;color:#b9c5e6;font-size:11px;background:rgba(118,136,195,.1)}
 .search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #303b62;background:#11172b;color:white;font-size:14px;margin:6px 0 14px}.realm-list{display:grid;gap:9px}.realm{border:1px solid #303b62;background:rgba(255,255,255,.025);border-radius:13px;padding:13px 14px}.realm-head{display:flex;gap:12px;align-items:center}.num{width:32px;height:32px;flex-shrink:0;border-radius:9px;display:grid;place-items:center;background:rgba(118,136,195,.16);color:#d2daf5;font-weight:700}.realm h3{margin:0;font-size:16px}.realm p{color:#9fa9c7;font-size:12px;margin-top:5px}.tag{font-size:10px;color:#c6d0f0;border:1px solid #46547d;border-radius:999px;padding:2px 7px;margin-left:auto;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mini{padding:13px;border:1px solid #303b62;border-radius:12px;background:rgba(255,255,255,.025)}.mini p{color:#9fa9c7;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mini{padding:13px;border:1px solid #303b62;border-radius:12px;background:rgba(255,255,255,.025)}.mini p{color:#9fa9c7;font-size:12px}.branch-root{max-width:360px;margin:18px auto 0;padding:14px;text-align:center;border:1px solid #697db5;border-radius:12px;background:rgba(118,136,195,.14);display:flex;flex-direction:column}.branch-root span{font-size:12px;color:#aeb9db}.branch-lines{text-align:center;color:#aeb9db;font-size:12px;padding:12px}.branch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.branch-card{border:1px solid #3a466d;border-radius:14px;padding:14px;background:rgba(255,255,255,.025)}.branch-card h3{margin-bottom:8px}.branch-card>p{font-size:12px;color:#aab5d5;margin-bottom:10px}.branch-step{padding:8px 10px;margin:7px 0;text-align:center;border:1px solid #46547d;border-radius:9px;background:rgba(118,136,195,.08);font-size:13px}.branch-step.endpoint{border-color:#9b8bd3;background:rgba(155,139,211,.13);font-weight:700}.branch-foot{margin-top:12px!important;font-size:11px!important}
 footer{text-align:center;padding:30px 15px;border-top:1px solid rgba(100,115,160,.12);color:#59637f;font-size:12px}
-@media(max-width:560px){header{padding-top:30px}.grid{grid-template-columns:1fr}.tag{font-size:9px}}
+@media(max-width:560px){header{padding-top:30px}.grid,.branch-grid{grid-template-columns:1fr}.tag{font-size:9px}}
 </style>
 </head>
 <body>
@@ -31,13 +31,13 @@ footer{text-align:center;padding:30px 15px;border-top:1px solid rgba(100,115,160
 <main>
 <section class="intro">
 <h2>📚 研究原則</h2>
-<p>本模塊以番茄小說中的洪荒流、混沌創世流、修煉升級流與穿越／系統流作品為主要比較樣本，保留不同作品各自的版本，不把差異直接抹平。</p>
-<div class="badges"><span class="badge">多作品比較</span><span class="badge">保留原統整架構</span><span class="badge">來源可追溯</span><span class="badge">分歧另行註記</span></div>
-<div class="note">研究狀態：這是可持續更新的第一版框架。尚未逐部核實的階位會標示為「待核對」，不會提前宣稱已獲多數作品證實。</div>
+<p>本頁整理洪荒流常見修煉境界，從境界定位、修行特徵與晉升路線理解各階位，並呈現大羅金仙之後可能展開的不同修行分支。</p>
+<div class="badges"><span class="badge">境界主幹</span><span class="badge">修行分支</span><span class="badge">分支境界對應</span><span class="badge">三道成聖</span></div>
+<div class="note">本頁以智庫統合架構作為閱讀指南；分支用來整理不同修行路線，不代表所有作品的名稱與規則完全一致。</div>
 </section>
 <section class="panel">
 <h2>🧭 境界總表</h2>
-<p class="muted">可搜尋名稱；此處呈現的是目前工作底稿，不代表每部小說都採用完整相同的階序。</p>
+<p class="muted">可搜尋境界名稱。先掌握共同主幹，再沿分支理解不同的修行道路。</p>
 <input id="search" class="search" type="search" placeholder="搜尋境界，例如：太乙金仙、天道、大道">
 <div id="realmList" class="realm-list">
 <article class="realm" data-name="地仙"><div class="realm-head"><span class="num">01</span><h3>地仙</h3><span class="tag">前段候選</span></div><p>列入原統整架構的前段境界候選；具體前置階位與定義待跨作品核對。</p></article>
@@ -74,7 +74,7 @@ footer{text-align:center;padding:30px 15px;border-top:1px solid rgba(100,115,160
 </section>
 <section class="panel">
 <h2>🗂️ 來源與版本紀錄</h2>
-<p>每次完成作品核對後，會補上作品名、作者、平台／版本、章節或原文依據、該作品的境界序列，以及與智庫統整版的差異。</p>
+<p>境界正文以定位、修行特徵與晉升關係為主。作品出處與設定差異保留在研究紀錄中，只有會影響理解時才在頁面簡短補充。</p>
 <div class="badges"><span class="badge">原文明載</span><span class="badge">跨作品共通</span><span class="badge">特定作品設定</span><span class="badge">智庫統合推定</span><span class="badge">待核實</span></div>
 <p class="muted">目前尚未取得足夠逐部原文樣本，因此本頁不會虛構作品來源或統計比例。</p>
 </section>
