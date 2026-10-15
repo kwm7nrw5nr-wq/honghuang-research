@@ -526,7 +526,7 @@
       <input
         type="text"
         id="searchInput"
-        placeholder="🔎 搜尋人物名稱，例如：盤古"
+        placeholder="🔎 搜尋人物、境界、法則、勢力或相關事件，例如：盤古、力之法則"
       >
 
     </div>
@@ -957,16 +957,18 @@
 
       cards.forEach(card => {
 
-        const name =
-          card.dataset.name
-            .toLowerCase();
+        const searchableText =
+          (
+            card.dataset.name + " " +
+            card.innerText
+          ).toLowerCase();
 
         const category =
           card.dataset.category;
 
 
         const matchKeyword =
-          name.includes(keyword);
+          searchableText.includes(keyword);
 
         const matchCategory =
           currentFilter === "all" ||
