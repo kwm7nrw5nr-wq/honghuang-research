@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>修煉境界｜洪荒智庫</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;background:radial-gradient(circle at 50% 0%,#26345f 0%,#11182f 32%,#080c18 75%);color:#f4f5ff;min-height:100vh;line-height:1.75}
+header{text-align:center;padding:42px 18px 34px;background:radial-gradient(circle at 50% 35%,rgba(118,137,205,.2),transparent 55%);border-bottom:1px solid rgba(100,115,160,.15)}
+.back{display:inline-block;margin-bottom:22px;padding:7px 15px;border:1px solid #46547d;border-radius:999px;color:#aeb9db;text-decoration:none;font-size:13px}
+.icon{font-size:44px}h1{font-size:clamp(28px,7vw,44px);letter-spacing:3px;margin:5px 0 8px}.subtitle{color:#9fa9c7;font-size:14px}
+main{max-width:950px;margin:auto;padding:25px 16px 65px}
+.intro,.panel{border:1px solid #303b62;border-radius:18px;background:linear-gradient(145deg,rgba(30,40,72,.94),rgba(17,23,43,.94));padding:20px;margin-bottom:18px}
+h2{font-size:21px;margin-bottom:9px}h3{font-size:17px;margin-bottom:7px}.muted{color:#9fa9c7;font-size:13px}.note{border-left:3px solid #8798d0;padding:9px 12px;margin-top:12px;color:#b9c5e6;font-size:13px;background:rgba(118,136,195,.08);border-radius:0 9px 9px 0}
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.badge{border:1px solid #46547d;border-radius:999px;padding:3px 9px;color:#b9c5e6;font-size:11px;background:rgba(118,136,195,.1)}
+.search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #303b62;background:#11172b;color:white;font-size:14px;margin:6px 0 14px}.realm-list{display:grid;gap:9px}.realm{border:1px solid #303b62;background:rgba(255,255,255,.025);border-radius:13px;padding:13px 14px}.realm-head{display:flex;gap:12px;align-items:center}.num{width:32px;height:32px;flex-shrink:0;border-radius:9px;display:grid;place-items:center;background:rgba(118,136,195,.16);color:#d2daf5;font-weight:700}.realm h3{margin:0;font-size:16px}.realm p{color:#9fa9c7;font-size:12px;margin-top:5px}.tag{font-size:10px;color:#c6d0f0;border:1px solid #46547d;border-radius:999px;padding:2px 7px;margin-left:auto;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mini{padding:13px;border:1px solid #303b62;border-radius:12px;background:rgba(255,255,255,.025)}.mini p{color:#9fa9c7;font-size:12px}
+footer{text-align:center;padding:30px 15px;border-top:1px solid rgba(100,115,160,.12);color:#59637f;font-size:12px}
+@media(max-width:560px){header{padding-top:30px}.grid{grid-template-columns:1fr}.tag{font-size:9px}}
+</style>
+</head>
+<body>
+<header>
+<a class="back" href="index.html">← 返回洪荒智庫</a>
+<div class="icon">🪷</div>
+<h1>修煉境界</h1>
+<p class="subtitle">跨作品境界統合、混元與聖人、三道成聖研究</p>
+</header>
+<main>
+<section class="intro">
+<h2>📚 研究原則</h2>
+<p>本模塊以番茄小說中的洪荒流、混沌創世流、修煉升級流與穿越／系統流作品為主要比較樣本，保留不同作品各自的版本，不把差異直接抹平。</p>
+<div class="badges"><span class="badge">多作品比較</span><span class="badge">保留原統整架構</span><span class="badge">來源可追溯</span><span class="badge">分歧另行註記</span></div>
+<div class="note">研究狀態：這是可持續更新的第一版框架。尚未逐部核實的階位會標示為「待核對」，不會提前宣稱已獲多數作品證實。</div>
+</section>
+<section class="panel">
+<h2>🧭 境界總表</h2>
+<p class="muted">可搜尋名稱；此處呈現的是目前工作底稿，不代表每部小說都採用完整相同的階序。</p>
+<input id="search" class="search" type="search" placeholder="搜尋境界，例如：太乙金仙、天道、大道">
+<div id="realmList" class="realm-list">
+<article class="realm" data-name="地仙"><div class="realm-head"><span class="num">01</span><h3>地仙</h3><span class="tag">前段候選</span></div><p>列入原統整架構的前段境界候選；具體前置階位與定義待跨作品核對。</p></article>
+<article class="realm" data-name="天仙"><div class="realm-head"><span class="num">02</span><h3>天仙</h3><span class="tag">前段候選</span></div><p>常見於仙俠修煉敘事；需核對洪荒小說中的排列位置與前後境界。</p></article>
+<article class="realm" data-name="玄仙"><div class="realm-head"><span class="num">03</span><h3>玄仙</h3><span class="tag">前段候選</span></div><p>保留為原整理中的候選階位；是否有真仙等其他階位插入，留待作品樣本確認。</p></article>
+<article class="realm" data-name="金仙"><div class="realm-head"><span class="num">04</span><h3>金仙</h3><span class="tag">核心序列</span></div><p>使用者統整的核心境界序列之一。</p></article>
+<article class="realm" data-name="太乙金仙"><div class="realm-head"><span class="num">05</span><h3>太乙金仙</h3><span class="tag">核心序列</span></div><p>核心序列：金仙 → 太乙金仙 → 大羅金仙。後續比較各作品的定義與細分方式。</p></article>
+<article class="realm" data-name="大羅金仙"><div class="realm-head"><span class="num">06</span><h3>大羅金仙</h3><span class="tag">核心序列</span></div><p>核心序列中的重要階位；其與準聖的過渡方式依作品記錄。</p></article>
+<article class="realm" data-name="準聖 混元金仙"><div class="realm-head"><span class="num">07</span><h3>準聖（混元金仙）</h3><span class="tag">核心對應</span></div><p>按既有統整架構列為對應名稱；若作品把兩者分開，將保留該作品的差異。</p></article>
+<article class="realm" data-name="聖人 混元大羅金仙"><div class="realm-head"><span class="num">08</span><h3>聖人（混元大羅金仙）</h3><span class="tag">核心對應</span></div><p>按既有統整架構列為對應名稱；需另外比較天道聖人與混元修行者的關係。</p></article>
+<article class="realm" data-name="混元無極大羅金仙"><div class="realm-head"><span class="num">09</span><h3>混元無極大羅金仙</h3><span class="tag">高階候選</span></div><p>依原統整表保留在聖人之後的高階位置；共通程度、定義與對應關係待逐部核對。</p></article>
+<article class="realm" data-name="混元太上無極大羅金仙"><div class="realm-head"><span class="num">10</span><h3>混元太上無極大羅金仙</h3><span class="tag">高階候選</span></div><p>依原統整表列為目前最高階候選；不同作品可能採用不同命名或終極境界設定。</p></article>
+<article class="realm" data-name="半步大道 盤古"><div class="realm-head"><span class="num">11</span><h3>半步大道</h3><span class="tag">智庫既有設定</span></div><p>智庫既有定位：盤古＝半步混元太上無極大羅金仙，亦稱「半步大道」。這是本智庫採用的統合設定，不宣稱為所有作品共識。</p></article>
+</div>
+</section>
+<section class="panel">
+<h2>⚖️ 混元體系與聖人體系</h2>
+<div class="grid">
+<div class="mini"><h3>混元修行</h3><p>比較修行路徑、力量來源、是否依附天道，以及作品如何界定混元境界。</p></div>
+<div class="mini"><h3>聖人成道</h3><p>比較功德、立教、天道認可或其他成聖條件；各項僅按具體作品記錄。</p></div>
+<div class="mini"><h3>強弱與限制</h3><p>使用作品中的明確描述或情節作依據，不把單一版本的戰力排序推廣到所有作品。</p></div>
+<div class="mini"><h3>名稱與境界</h3><p>區分「名稱相近」「境界對應」與「戰力高低」，避免把三者混為一談。</p></div>
+</div>
+</section>
+<section class="panel">
+<h2>🌏 天道、地道、人道</h2>
+<div class="grid">
+<div class="mini"><h3>天道聖人</h3><p>記錄成聖方式、與天道的關係、力量來源及限制。</p></div>
+<div class="mini"><h3>地道聖人</h3><p>記錄地道的定義、成聖方式與代表人物；不預設所有作品都有此分類。</p></div>
+<div class="mini"><h3>人道聖人</h3><p>記錄人道的定義、成聖方式與代表人物；依作品區分共通設定與個別演繹。</p></div>
+<div class="mini"><h3>三道關係</h3><p>比較三道是否平行、是否有強弱差異，以及與混元修行的關係。</p></div>
+</div>
+<div class="note">三道分類與境界階序分開記錄；不預先設定天道、地道、人道的固定強弱排名。</div>
+</section>
+<section class="panel">
+<h2>🗂️ 來源與版本紀錄</h2>
+<p>每次完成作品核對後，會補上作品名、作者、平台／版本、章節或原文依據、該作品的境界序列，以及與智庫統整版的差異。</p>
+<div class="badges"><span class="badge">原文明載</span><span class="badge">跨作品共通</span><span class="badge">特定作品設定</span><span class="badge">智庫統合推定</span><span class="badge">待核實</span></div>
+<p class="muted">目前尚未取得足夠逐部原文樣本，因此本頁不會虛構作品來源或統計比例。</p>
+</section>
+</main>
+<footer>洪荒智庫 · 修煉境界研究模塊</footer>
+<script>
+const search=document.getElementById('search');
+const realms=[...document.querySelectorAll('.realm')];
+search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();realms.forEach(card=>{card.hidden=!card.dataset.name.toLowerCase().includes(q)&&!card.innerText.toLowerCase().includes(q);});});
+</script>
+</body>
+</html>
