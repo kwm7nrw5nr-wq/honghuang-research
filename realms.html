@@ -19,6 +19,12 @@ h2{font-size:21px;margin-bottom:9px}h3{font-size:17px;margin-bottom:7px}.muted{c
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mini{padding:13px;border:1px solid #303b62;border-radius:12px;background:rgba(255,255,255,.025)}.mini p{color:#9fa9c7;font-size:12px}.branch-root{max-width:360px;margin:18px auto 0;padding:14px;text-align:center;border:1px solid #697db5;border-radius:12px;background:rgba(118,136,195,.14);display:flex;flex-direction:column}.branch-root span{font-size:12px;color:#aeb9db}.branch-lines{text-align:center;color:#aeb9db;font-size:12px;padding:12px}.branch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.branch-card{border:1px solid #3a466d;border-radius:14px;padding:14px;background:rgba(255,255,255,.025)}.branch-card h3{margin-bottom:8px}.branch-card>p{font-size:12px;color:#aab5d5;margin-bottom:10px}.branch-step{padding:8px 10px;margin:7px 0;text-align:center;border:1px solid #46547d;border-radius:9px;background:rgba(118,136,195,.08);font-size:13px}.branch-step.endpoint{border-color:#9b8bd3;background:rgba(155,139,211,.13);font-weight:700}.branch-foot{margin-top:12px!important;font-size:11px!important}
 footer{text-align:center;padding:30px 15px;border-top:1px solid rgba(100,115,160,.12);color:#59637f;font-size:12px}
 @media(max-width:560px){header{padding-top:30px}.grid,.branch-grid{grid-template-columns:1fr}.tag{font-size:9px}}
+
+.game-panel{border:1px solid #48588a;border-radius:18px;background:linear-gradient(145deg,rgba(31,43,79,.96),rgba(12,19,39,.97));padding:18px;margin-bottom:18px}
+.game-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.game-tab,.game-btn{border:1px solid #46547d;border-radius:10px;padding:9px 12px;color:#dce4ff;background:#151e39;font-size:13px;cursor:pointer}.game-tab.active,.game-btn.primary{background:#4a4b85;border-color:#9289d6;color:white}
+.game-view{border:1px solid #303b62;background:rgba(5,10,24,.35);border-radius:13px;padding:14px}.realm-branch-grid,.collection-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.realm-node{width:100%;text-align:left;display:block;padding:12px;border:1px solid #46547d;border-radius:11px;background:rgba(118,136,195,.08);color:#f4f5ff;cursor:pointer;margin:7px 0}.realm-node strong,.collection-item strong{display:block}.realm-node span{display:block;color:#aeb9db;font-size:11px;margin-top:3px}.realm-node.selected{border-color:#d4bdff;background:rgba(146,137,214,.18)}.realm-node.unlocked:after{content:" ✓ 已探索";float:right;color:#a9ead7;font-size:10px}.game-detail,.collection-item{margin-top:10px;padding:12px;border-radius:11px;background:rgba(118,136,195,.1);border:1px solid #3c4973}.game-detail p{font-size:13px;color:#c0cbea;margin:5px 0}.collection-item{font-size:12px}.quiz-option{display:block;width:100%;text-align:left;margin:7px 0;padding:10px;border-radius:10px;border:1px solid #46547d;background:#111a33;color:#f4f5ff;cursor:pointer}.quiz-option:disabled{opacity:.8}.progress-track{height:7px;border-radius:99px;background:#222c49;overflow:hidden;margin:9px 0}.progress-fill{height:100%;background:linear-gradient(90deg,#7c8be1,#c2a8ff);transition:width .2s}
+@media(max-width:560px){.realm-branch-grid,.collection-list{grid-template-columns:1fr}.game-panel{padding:14px}}
+
 </style>
 </head>
 <body>
@@ -35,6 +41,29 @@ footer{text-align:center;padding:30px 15px;border-top:1px solid rgba(100,115,160
 <div class="badges"><span class="badge">境界主幹</span><span class="badge">修行分支</span><span class="badge">分支境界對應</span><span class="badge">三道成聖</span></div>
 <div class="note">本頁以智庫統合架構作為閱讀指南；分支用來整理不同修行路線，不代表所有作品的名稱與規則完全一致。</div>
 </section>
+
+<section class="game-panel" id="cultivationGame">
+<h2>🎮 洪荒修行之旅</h2><p class="muted">探索境界分支、收集圖鑑、挑戰知識。可以自由探索，不必強制升級。</p>
+<div id="gameProgressText" class="muted">探索進度 0 / 10</div><div class="progress-track"><div class="progress-fill" id="gameProgressBar" style="width:0%"></div></div>
+<div class="game-tabs" role="tablist" aria-label="洪荒互動玩法"><button class="game-tab active" data-tab="explore" aria-selected="true">🌿 修行探索</button><button class="game-tab" data-tab="collection" aria-selected="false">📚 洪荒圖鑑</button><button class="game-tab" data-tab="quiz" aria-selected="false">✨ 知識挑戰</button></div>
+<div class="game-view">
+<div data-view="explore"><h3>選擇修行道路</h3><p class="muted">點擊境界查看介紹，兩條路線可以自由切換。</p>
+<div class="realm-branch-grid"><div><h3>🪷 斬三尸／準聖路線</h3>
+<button class="realm-node" data-realm="大羅金仙"><strong>大羅金仙</strong><span>分支起點・高階仙道</span></button>
+<button class="realm-node" data-realm="準聖／混元金仙"><strong>準聖／混元金仙</strong><span>同階對應・三尸路線</span></button>
+<button class="realm-node" data-realm="一尸準聖"><strong>一尸準聖</strong><span>斬去一尸的階段</span></button>
+<button class="realm-node" data-realm="二尸準聖"><strong>二尸準聖</strong><span>斬去二尸的階段</span></button>
+<button class="realm-node" data-realm="三尸準聖"><strong>三尸準聖</strong><span>斬三尸路線的重要階段</span></button>
+<button class="realm-node" data-realm="聖人／混元大羅金仙"><strong>聖人／混元大羅金仙</strong><span>同階對應・聖人層次</span></button></div>
+<div><h3>✨ 混元修行路線</h3>
+<button class="realm-node" data-realm="混元金仙"><strong>混元金仙</strong><span>對應準聖</span></button>
+<button class="realm-node" data-realm="混元大羅金仙"><strong>混元大羅金仙</strong><span>對應聖人</span></button>
+<button class="realm-node" data-realm="混元無極大羅金仙"><strong>混元無極大羅金仙</strong><span>更高階混元境界</span></button>
+<button class="realm-node" data-realm="混元太上無極大羅金仙"><strong>混元太上無極大羅金仙</strong><span>智庫設定中與大道平齊</span></button></div></div>
+<div class="game-detail" id="realmDetail"><h3>🌌 點選境界開始探索</h3><p>境界定位、修行特徵與關聯內容會顯示在這裡。</p></div></div>
+<div data-view="collection" hidden><h3>📚 洪荒圖鑑</h3><p class="muted">先收錄修行概念，之後可連結人物、法寶與勢力資料。</p><div class="collection-list"><div class="collection-item"><strong>大羅金仙</strong>高階仙道的重要節點</div><div class="collection-item"><strong>準聖／混元金仙</strong>智庫統合設定中的同階對應</div><div class="collection-item"><strong>一尸、二尸、三尸準聖</strong>斬三尸路線的階段細分</div><div class="collection-item"><strong>聖人／混元大羅金仙</strong>智庫統合設定中的同階對應</div><div class="collection-item"><strong>天道、地道、人道</strong>成道體系分類，不是境界階級</div><div class="collection-item"><strong>混元高階</strong>混元無極與混元太上無極大羅金仙</div></div></div>
+<div data-view="quiz" hidden><h3>✨ 知識挑戰</h3><p class="muted">答對可累積挑戰分數。題目採用智庫目前的統合設定。</p><div id="quizArea"><p>準備好測試一下對境界的理解了嗎？</p><button class="game-btn primary" id="startQuiz">開始挑戰</button></div></div>
+</div></section>
 <section class="panel">
 <h2>🧭 境界總表</h2>
 <p class="muted">可搜尋境界名稱。先掌握共同主幹，再沿分支理解不同的修行道路。</p>
@@ -105,6 +134,26 @@ footer{text-align:center;padding:30px 15px;border-top:1px solid rgba(100,115,160
 const search=document.getElementById('search');
 const realms=[...document.querySelectorAll('.realm')];
 search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();realms.forEach(card=>{card.hidden=!card.dataset.name.toLowerCase().includes(q)&&!card.innerText.toLowerCase().includes(q);});});
+
+const gameTabs=[...document.querySelectorAll('.game-tab')], gameViews=[...document.querySelectorAll('[data-view]')], explored=new Set();let quizScore=0,questionIndex=0;
+const desc={
+'大羅金仙':['高階仙道的重要境界，也是本互動圖的分支起點。','可從這裡探索斬三尸／準聖路線與混元修行路線。'],
+'準聖／混元金仙':['智庫統合設定中，準聖對應混元金仙。','準聖路線可再查看一尸、二尸、三尸準聖等階段。'],
+'混元金仙':['智庫統合設定中，混元金仙對應準聖。','此處呈現為混元修行路線上的對應境界。'],
+'一尸準聖':['斬三尸路線的階段之一，表示已斬去一尸。','可與二尸、三尸準聖連續查看，理解階段變化。'],
+'二尸準聖':['斬三尸路線的階段之一，表示已斬去二尸。','相較一尸階段，斬尸進度更進一步。'],
+'三尸準聖':['斬三尸路線的重要階段，表示三尸皆已斬去。','三尸盡斬與成聖之間的具體條件，之後再依智庫統合設定補全。'],
+'聖人／混元大羅金仙':['智庫統合設定中，聖人對應混元大羅金仙。','天道、地道、人道是成道體系分類，與境界階序分開記錄。'],
+'混元大羅金仙':['智庫統合設定中，混元大羅金仙對應聖人。','可沿混元修行路線繼續探索更高階混元境界。'],
+'混元無極大羅金仙':['智庫境界表中列於混元大羅金仙之後的高階境界。','可繼續查看最高階境界。'],
+'混元太上無極大羅金仙':['智庫既定設定中的最高階境界，與大道平齊。','盤古的特殊定位不作為獨立境界階位列入互動路線。']};
+function refresh(){document.getElementById('gameProgressText').textContent='探索進度 '+explored.size+' / 10 · 挑戰答對 '+quizScore+' 題';document.getElementById('gameProgressBar').style.width=(explored.size/10*100)+'%';document.querySelectorAll('.realm-node').forEach(b=>b.classList.toggle('unlocked',explored.has(b.dataset.realm)));}
+gameTabs.forEach(tab=>tab.addEventListener('click',()=>{gameTabs.forEach(t=>{t.classList.toggle('active',t===tab);t.setAttribute('aria-selected',String(t===tab));});gameViews.forEach(v=>v.hidden=v.dataset.view!==tab.dataset.tab);}));
+document.querySelectorAll('.realm-node').forEach(b=>b.addEventListener('click',()=>{const n=b.dataset.realm;explored.add(n);document.querySelectorAll('.realm-node').forEach(x=>x.classList.toggle('selected',x===b));const d=desc[n]||['境界介紹正在整理中。','此項內容會依智庫統合設定逐步補全。'];document.getElementById('realmDetail').innerHTML='<h3>✨ '+n+'</h3><p>'+d[0]+'</p><p>'+d[1]+'</p><p class="muted">已記錄本次探索。</p>';refresh();}));
+const questions=[{q:'在智庫統合設定中，準聖對應哪個境界？',a:['太乙金仙','混元金仙','混元無極大羅金仙'],correct:1,why:'準聖＝混元金仙。'},{q:'在智庫統合設定中，聖人對應哪個境界？',a:['混元金仙','混元大羅金仙','大羅金仙'],correct:1,why:'聖人＝混元大羅金仙。'},{q:'天道、地道、人道在智庫中屬於什麼分類？',a:['固定境界階級','法寶等級','成道體系分類'],correct:2,why:'三道是成道體系分類，與境界階序分開記錄。'},{q:'大羅金仙之後的互動圖提供哪些路線？',a:['只有一條固定路線','斬三尸／準聖與混元修行','只分天仙與地仙'],correct:1,why:'本模組把兩種修行路線分開呈現。'}];
+function showQuestion(){const area=document.getElementById('quizArea');if(questionIndex>=questions.length){area.innerHTML='<h3>挑戰完成！</h3><p>本輪答對 '+quizScore+' 題。</p><button class="game-btn primary" id="restartQuiz">再挑戰一次</button>';document.getElementById('restartQuiz').addEventListener('click',()=>{questionIndex=0;quizScore=0;showQuestion();refresh();});return;}const q=questions[questionIndex];area.innerHTML='<p><strong>第 '+(questionIndex+1)+' 題／'+questions.length+' 題</strong></p><p>'+q.q+'</p>'+q.a.map((a,i)=>'<button class="quiz-option" data-answer="'+i+'">'+a+'</button>').join('')+'<div id="quizFeedback" class="muted" aria-live="polite"></div>';area.querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>{area.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);const ok=Number(b.dataset.answer)===q.correct;if(ok)quizScore++;document.getElementById('quizFeedback').textContent=(ok?'答對了！':'再記住這個對應。')+q.why;const next=document.createElement('button');next.className='game-btn primary';next.textContent=questionIndex===questions.length-1?'查看結果':'下一題';next.style.marginTop='10px';next.addEventListener('click',()=>{questionIndex++;showQuestion();refresh();});area.appendChild(next);refresh();}));}
+document.getElementById('startQuiz').addEventListener('click',()=>{questionIndex=0;quizScore=0;showQuestion();refresh();});refresh();
+
 </script>
 </body>
 </html>
